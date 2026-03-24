@@ -1,0 +1,121 @@
+# Parking Reservation System
+
+A comprehensive parking reservation management system built for the Mercure Hotel Frankfurt Airport Langen. This Streamlit-based application provides an intuitive interface for managing hotel parking reservations, tracking occupancy, and monitoring availability.
+
+## Features
+
+- **Dashboard Overview**: Real-time KPIs including total parking spots, current reservations, peak occupancy, and availability metrics
+- **Reservation Management**: View, search, and manage existing parking reservations
+- **New Reservation Creation**: Add new parking reservations with validation and conflict checking
+- **Availability Tracking**: Detailed availability calendar with occupancy charts and tables
+- **Manager Configuration**: Administrative tools for system configuration and data management
+- **Data Sources**: Support for both SQLite database (production) and JSON mock data (development/testing)
+- **Responsive UI**: Clean, modern interface built with Streamlit
+
+## Technology Stack
+
+- **Frontend**: Streamlit
+- **Backend**: Python 3.x
+- **Database**: SQLite
+- **Data Processing**: Pandas
+- **Mock Data**: JSON (optional)
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip package manager
+
+### Setup
+
+1. Clone or download the project files to your local machine
+
+2. Create a virtual environment (recommended):
+   ```bash
+   python -m venv .venv
+   ```
+
+3. Activate the virtual environment:
+   - Windows: `.venv\Scripts\activate`
+   - macOS/Linux: `source .venv/bin/activate`
+
+4. Install required dependencies:
+   ```bash
+   pip install streamlit pandas
+   ```
+
+## Usage
+
+1. Ensure you're in the project directory and virtual environment is activated
+
+2. Run the application:
+   ```bash
+   streamlit run interface.py
+   ```
+
+3. Open your web browser to the URL displayed in the terminal (typically `http://localhost:8501`)
+
+4. Use the sidebar navigation to access different sections:
+   - **Home**: Dashboard with occupancy overview and KPIs
+   - **Reservations**: View and manage existing reservations
+   - **New Reservation**: Create new parking reservations
+   - **Availability**: Check parking availability for specific date ranges
+   - **Manager Config**: Administrative configuration options
+
+## Configuration
+
+The system can be configured through the sidebar settings:
+
+- **Data Source**: Choose between SQLite (real data) or JSON (mock data for testing)
+- **Total Parking Spots**: Set the default parking capacity (default: 60 spots)
+
+Configuration constants are defined in `configuration.py`:
+- Hotel name
+- Database file path
+- JSON mock data file path
+- Default parking capacity
+
+## Data Structure
+
+### SQLite Database
+The system uses a SQLite database (`parking_reservations.db`) with the following structure:
+- `reservations` table containing reservation details
+- Automatic database initialization on first run
+
+### JSON Mock Data
+Sample data is provided in `data.json` for testing and development purposes.
+
+## Project Structure
+
+```
+├── interface.py              # Main application entry point
+├── Home_Page.py              # Dashboard and home page logic
+├── reservation_Page.py       # Reservation listing and management
+├── new_reservation.py        # New reservation creation
+├── Manager_config_Page.py    # Administrative configuration
+├── db_verwaltung.py          # Database operations and utilities
+├── helpers.py                # Helper functions and utilities
+├── configuration.py          # Application configuration constants
+├── data.json                 # Mock data for testing
+├── parking_reservations.db   # SQLite database (created automatically)
+├── __init__.py               # Package initialization
+└── __pycache__/              # Python bytecode cache
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is proprietary software for Mercure Hotel Frankfurt Airport Langen.
+
+## Support
+
+For technical support or questions, please contact the development team.</content>
+<parameter name="filePath">c:\Users\youne\OneDrive\Desktop\Personal\Project\README.md
