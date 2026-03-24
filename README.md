@@ -88,6 +88,59 @@ Deploy your app online for free using Streamlit Cloud:
 
 **Live Demo**: Once deployed, your application will be accessible online 24/7 with automatic updates whenever you push to the GitHub repository.
 
+### Local Hotel Server Deployment (No Internet Required)
+
+Deploy this application on your hotel's internal server for operation without internet access:
+
+#### Server Setup
+
+1. **Install Python** on the hotel server (Python 3.8+)
+
+2. **Clone or download the project** to the server:
+   ```bash
+   git clone https://github.com/Younes-wael/Parking-Reservation-System.git
+   cd Parking-Reservation-System
+   ```
+
+3. **Create virtual environment**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+4. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Run on the hotel network**:
+   ```bash
+   streamlit run interface.py --server.address 0.0.0.0 --server.port 8501
+   ```
+
+#### Accessing the Application
+
+**From Hotel Staff Computers**:
+- Get the server's local IP address (e.g., `192.168.1.100`)
+- Open browser and navigate to: `http://192.168.1.100:8501`
+- No internet connection needed
+- Accessible only within hotel network (more secure)
+
+#### Advantages of Local Deployment
+
+- ✅ **No Internet Required**: Operates completely offline once installed
+- ✅ **Data Security**: All reservation data stays on hotel servers
+- ✅ **Full Control**: Hotel maintains complete control over the system
+- ✅ **Instant Access**: No network latency, fast response times
+- ✅ **Cost Effective**: One-time installation, no subscription fees
+- ✅ **Privacy**: No data goes to external cloud services
+
+#### Persistence & Backups
+
+- SQLite database (`parking_reservations.db`) stores all data locally
+- Regularly backup the database file for disaster recovery
+- Easy to migrate to another server by copying project folder
+
 ## Configuration
 
 The system can be configured through the sidebar settings:
