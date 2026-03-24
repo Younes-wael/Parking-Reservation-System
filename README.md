@@ -47,6 +47,8 @@ A comprehensive parking reservation management system built for the Mercure Hote
 
 ## Usage
 
+### Local Installation
+
 1. Ensure you're in the project directory and virtual environment is activated
 
 2. Run the application:
@@ -62,6 +64,29 @@ A comprehensive parking reservation management system built for the Mercure Hote
    - **New Reservation**: Create new parking reservations
    - **Availability**: Check parking availability for specific date ranges
    - **Manager Config**: Administrative configuration options
+
+### Online Deployment (Streamlit Cloud)
+
+Deploy your app online for free using Streamlit Cloud:
+
+1. **Connect your GitHub Repository**:
+   - Go to [Streamlit Cloud](https://streamlit.io/cloud)
+   - Click "New app"
+   - Connect your GitHub account
+   - Select this repository: `Younes-wael/Parking-Reservation-System`
+   - Set the main file to `interface.py`
+
+2. **Deploy**:
+   - Click "Deploy"
+   - Streamlit Cloud will automatically detect and install dependencies from `requirements.txt`
+   - Your app will be live at: `https://[your-username]-parking-reservation-system.streamlit.app`
+
+3. **Share the Link**:
+   - The deployment URL is accessible from anywhere
+   - Share it with team members or hotel staff
+   - No installation required - just open the link in a browser
+
+**Live Demo**: Once deployed, your application will be accessible online 24/7 with automatic updates whenever you push to the GitHub repository.
 
 ## Configuration
 
