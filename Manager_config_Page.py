@@ -33,8 +33,6 @@ def page_manager_config(conn: sqlite3.Connection) -> None:
         errors = []
         if end_date < start_date:
             errors.append("End date must be on/after start date.")
-        if int(new_capacity) < 0:
-            errors.append("Capacity must be >= 0.")
 
         if errors:
             st.error("Fix these issues:")
