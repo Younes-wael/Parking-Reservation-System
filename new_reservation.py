@@ -87,6 +87,12 @@ def page_new_reservation(conn: sqlite3.Connection, source: str, capacity: int) -
             st.write(f"- {e}")
         return
 
+    if check_in < date.today():
+        st.warning(
+            f"Check-in date ({check_in}) is in the past. "
+            "Saving as a backfill entry."
+        )
+
     r = Reservation(
         reservation_number=reservation_number_clean,
         guest_name=guest_name_clean,
