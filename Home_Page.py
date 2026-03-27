@@ -18,7 +18,7 @@ import streamlit as st
 # =========================
 # Availability / Occupancy
 # =========================
-def occupancy_by_day(df: pd.DataFrame, start: date, end: date, capacity_by_day: pd.DataFrame) -> pd.DataFrame:
+def occupancy_by_day(df: pd.DataFrame, start: date, end: date, capacity_by_day: pd.DataFrame, default_capacity: int = 0) -> pd.DataFrame:
     """
     capacity_by_day: DataFrame with columns ['day','capacity'] for each day in [start,end]
     Always returns columns: day, capacity, occupied, available
@@ -29,7 +29,7 @@ def occupancy_by_day(df: pd.DataFrame, start: date, end: date, capacity_by_day: 
 
     # Ensure we have capacity for all days
     cap_map = dict(zip(capacity_by_day["day"], capacity_by_day["capacity"]))
-    capacities = [int(cap_map.get(d, 0)) for d in days]
+    capacities = [int(cap_map.get(d, default_capacity)) for d in days]
 
     if df.empty:
         out = pd.DataFrame({"day": days, "capacity": capacities, "occupied": [0] * len(days)})
@@ -66,7 +66,7 @@ def page_home(conn: sqlite3.Connection, source: str, capacity: int) -> None:
         return
 
     cap_by_day = effective_capacity_by_day(conn, capacity, start, end)
-    occ = occupancy_by_day(df, start, end, cap_by_day)
+    occ = occupancy_by_day(df, start, end, cap_by_day, capacity)
 
     st.markdown("### KPIs")
     k1, k2, k3, k4 = st.columns(4)

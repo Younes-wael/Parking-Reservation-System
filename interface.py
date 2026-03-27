@@ -6,6 +6,8 @@ from __future__ import annotations
 import streamlit as st
 
 from configuration import HOTEL_NAME, DEFAULT_PARKING_SPOTS
+import sqlite3
+
 from db_verwaltung import get_conn, init_db
 from Home_Page import page_home
 from reservation_Page import page_reservations
@@ -35,11 +37,18 @@ from Manager_config_Page import page_manager_config
 # =========================
 # App Bootstrap
 # =========================
+@st.cache_resource
+def _get_db() -> sqlite3.Connection:
+    """Create and initialise the DB connection once; reused across all reruns."""
+    conn = get_conn()
+    init_db(conn)
+    return conn
+
+
 def main() -> None:
     st.set_page_config(page_title=f"{HOTEL_NAME} — Parking", layout="wide")
 
-    conn = get_conn()
-    init_db(conn)
+    conn = _get_db()
 
     with st.sidebar:
         st.header("Navigation")
@@ -77,7 +86,6 @@ def main() -> None:
     elif page == "Manager Config":
         page_manager_config(conn)
 
-    conn.close()
 
 
 if __name__ == "__main__":

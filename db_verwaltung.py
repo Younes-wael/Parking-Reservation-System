@@ -101,18 +101,15 @@ def fetch_all(conn: sqlite3.Connection) -> pd.DataFrame:
 
 
 def search_reservations(conn: sqlite3.Connection, query: str) -> pd.DataFrame:
-    q = f"%{query.strip()}%"
-    df = pd.read_sql_query(
-        """
-        SELECT reservation_number, guest_name, check_in, check_out, created_at
-        FROM reservations
-        WHERE guest_name LIKE ? OR reservation_number LIKE ?
-        ORDER BY created_at DESC
-        """,
-        conn,
-        params=(q, q),
+    df = fetch_all(conn)
+    if not query.strip():
+        return df
+    q = query.strip().lower()
+    mask = (
+        df["guest_name"].str.lower().str.contains(q, na=False)
+        | df["reservation_number"].str.lower().str.contains(q, na=False)
     )
-    return normalize_df(df)
+    return df[mask].copy()
 
 
 # =========================

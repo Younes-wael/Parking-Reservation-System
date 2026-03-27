@@ -57,9 +57,22 @@ def page_manager_config(conn: sqlite3.Connection) -> None:
     st.markdown("### Delete override")
     override_ids = overrides["id"].tolist()
     selected_id = st.selectbox("Select override ID to delete", override_ids)
+
     if st.button("Delete selected override"):
-        ok, msg = delete_capacity_override(conn, int(selected_id))
-        st.success(msg) if ok else st.error(msg)
+        st.session_state["confirm_delete_id"] = int(selected_id)
+
+    if st.session_state.get("confirm_delete_id") is not None:
+        pending = st.session_state["confirm_delete_id"]
+        st.warning(f"Delete override ID **{pending}**? This cannot be undone.")
+        c1, c2 = st.columns(2)
+        with c1:
+            if st.button("Yes, delete", type="primary"):
+                ok, msg = delete_capacity_override(conn, pending)
+                del st.session_state["confirm_delete_id"]
+                st.success(msg) if ok else st.error(msg)
+        with c2:
+            if st.button("Cancel"):
+                del st.session_state["confirm_delete_id"]
 
 def add_capacity_override(conn: sqlite3.Connection, start_date: date, end_date: date, capacity: int, note: str = "") -> Tuple[bool, str]:
     try:

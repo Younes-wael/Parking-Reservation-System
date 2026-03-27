@@ -25,7 +25,7 @@ def can_add_reservation(conn: sqlite3.Connection, source: str, capacity: int, df
         return False, "Invalid stay dates."
 
     cap_by_day = effective_capacity_by_day(conn, capacity, start, end)
-    occ = occupancy_by_day(df, start, end, cap_by_day)
+    occ = occupancy_by_day(df, start, end, cap_by_day, capacity)
 
     # after adding this new reservation, occupied would be +1
     occ["available_after"] = occ["available"] - 1
@@ -125,7 +125,7 @@ def page_availability(conn: sqlite3.Connection, source: str, capacity: int) -> N
         return
 
     cap_by_day = effective_capacity_by_day(conn, capacity, start, end)
-    occ = occupancy_by_day(df, start, end, cap_by_day)
+    occ = occupancy_by_day(df, start, end, cap_by_day, capacity)
 
     st.markdown("### Availability chart")
     # This will NOT crash now, because 'available' always exists.
