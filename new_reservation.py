@@ -90,12 +90,11 @@ def page_new_reservation(conn: sqlite3.Connection, source: str, capacity: int) -
         created_at=datetime.now(),
     )
     df = get_reservations_df(conn, source)
-    cap_by_day = effective_capacity_by_day(conn, capacity, check_in, check_out)
-    occ = occupancy_by_day(df, check_in, check_out, cap_by_day)
-    ok= False
-    msg= "insert unsuccessful"
-    if can_add_reservation(conn, source, capacity, df, check_in, check_out):
+    cap_ok, cap_msg = can_add_reservation(conn, source, capacity, df, check_in, check_out)
+    if cap_ok:
         ok, msg = insert_reservation(conn, r)
+    else:
+        ok, msg = False, cap_msg
 
 
     if ok:
