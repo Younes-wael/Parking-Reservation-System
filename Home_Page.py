@@ -3,7 +3,14 @@
 # =========================
 
 from __future__ import annotations
-from Manager_config_Page import *
+import sqlite3
+from datetime import date, timedelta
+
+from configuration import HOTEL_NAME
+from helpers import daterange
+from db_verwaltung import get_reservations_df
+from Manager_config_Page import effective_capacity_by_day
+
 import pandas as pd
 import streamlit as st
 

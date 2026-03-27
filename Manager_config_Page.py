@@ -1,6 +1,7 @@
 
 from __future__ import annotations
-from db_verwaltung import *
+from configuration import DEFAULT_PARKING_SPOTS
+from helpers import daterange
 import sqlite3
 from datetime import date, datetime, timedelta
 from typing import Tuple

@@ -4,8 +4,8 @@
 # =========================
 
 from __future__ import annotations
-from helpers import *
-from configuration import *
+from helpers import normalize_spaces
+from configuration import DB_PATH, JSON_PATH
 import json
 import sqlite3
 from dataclasses import dataclass

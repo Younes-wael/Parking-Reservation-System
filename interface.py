@@ -3,10 +3,14 @@
 # Streamlit multi-page UI + SQLite persistence + optional JSON mock data source
 
 from __future__ import annotations
-from reservation_Page import *
-from new_reservation import *
-
 import streamlit as st
+
+from configuration import HOTEL_NAME, DEFAULT_PARKING_SPOTS
+from db_verwaltung import get_conn, init_db
+from Home_Page import page_home
+from reservation_Page import page_reservations
+from new_reservation import page_new_reservation, page_availability
+from Manager_config_Page import page_manager_config
 
 
 

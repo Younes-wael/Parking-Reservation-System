@@ -1,7 +1,8 @@
 
 from __future__ import annotations
-from db_verwaltung import *
 import sqlite3
+
+from db_verwaltung import search_reservations_df
 
 import streamlit as st
 
